@@ -61,7 +61,7 @@ plt.fill_between(array_size_c, omp_avg - omp_std, omp_avg + omp_std, alpha=0.2)
 plt.plot(array_size_j, seq_avg_j, label='Java - Sequencial', linewidth=2.5, marker='s')
 plt.fill_between(array_size_j, seq_avg_j - seq_std_j, seq_avg_j + seq_std_j, alpha=0.2)
 
-plt.plot(array_size_j, par_avg_j, label='Java - Paralelo', linewidth=2.5, marker='s')
+plt.plot(array_size_j, par_avg_j, label='Java - Thread', linewidth=2.5, marker='s')
 plt.fill_between(array_size_j, par_avg_j - par_std_j, par_avg_j + par_std_j, alpha=0.2)
 
 plt.xlabel('Tamanho do Array', fontsize=10, fontweight='bold')
@@ -98,7 +98,7 @@ plt.plot(array_size_c, omp_speedup, label='C - OpenMP', linewidth=2.5, marker='o
 plt.fill_between(array_size_c, omp_speedup - omp_speedup_std, omp_speedup + omp_speedup_std, alpha=0.2)
 
 # --- JAVA ---
-plt.plot(array_size_j, speedup_j, label='Java - Paralelo', linewidth=2.5, marker='s')
+plt.plot(array_size_j, speedup_j, label='Java - Thread', linewidth=2.5, marker='s')
 plt.fill_between(array_size_j, speedup_j - speedup_std_j, speedup_j + speedup_std_j, alpha=0.2)
 
 plt.xlabel('Tamanho do Array', fontsize=10, fontweight='bold')
