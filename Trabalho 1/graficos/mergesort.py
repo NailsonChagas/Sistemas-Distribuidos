@@ -48,20 +48,20 @@ speedup_std_j = df_java['SpeedupStd']
 plt.figure(figsize=(12, 6))
 
 # --- C ---
-plt.plot(array_size_c, seq_avg_c, label='C - Sequencial', linewidth=2.5, marker='o')
+plt.plot(array_size_c, seq_avg_c, label='C - Sequencial', linewidth=1.5, marker='o', markersize=3)
 plt.fill_between(array_size_c, seq_avg_c - seq_std_c, seq_avg_c + seq_std_c, alpha=0.2)
 
-plt.plot(array_size_c, pt_avg, label='C - Pthread', linewidth=2.5, marker='o')
+plt.plot(array_size_c, pt_avg, label='C - Pthread', linewidth=1.5, marker='o', markersize=3)
 plt.fill_between(array_size_c, pt_avg - pt_std, pt_avg + pt_std, alpha=0.2)
 
-plt.plot(array_size_c, omp_avg, label='C - OpenMP', linewidth=2.5, marker='o')
+plt.plot(array_size_c, omp_avg, label='C - OpenMP', linewidth=1.5, marker='o', markersize=3)
 plt.fill_between(array_size_c, omp_avg - omp_std, omp_avg + omp_std, alpha=0.2)
 
 # --- JAVA ---
-plt.plot(array_size_j, seq_avg_j, label='Java - Sequencial', linewidth=2.5, marker='s')
+plt.plot(array_size_j, seq_avg_j, label='Java - Sequencial', linewidth=1.5, marker='s', markersize=3)
 plt.fill_between(array_size_j, seq_avg_j - seq_std_j, seq_avg_j + seq_std_j, alpha=0.2)
 
-plt.plot(array_size_j, par_avg_j, label='Java - Thread', linewidth=2.5, marker='s')
+plt.plot(array_size_j, par_avg_j, label='Java - Thread', linewidth=1.5, marker='s', markersize=3)
 plt.fill_between(array_size_j, par_avg_j - par_std_j, par_avg_j + par_std_j, alpha=0.2)
 
 plt.xlabel('Tamanho do Array', fontsize=10, fontweight='bold')
