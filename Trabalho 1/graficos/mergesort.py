@@ -83,7 +83,6 @@ ticks.append(max_tick)
 plt.xticks(ticks)
 
 plt.savefig('merge_sort_tempo_c_vs_java.png', dpi=600, bbox_inches='tight')
-plt.show()
 
 
 # =========================
@@ -108,6 +107,4 @@ plt.legend(fontsize=10)
 plt.grid(alpha=0.3)
 
 plt.xticks(ticks)
-
 plt.savefig('merge_sort_speedup_c_vs_java.png', dpi=600, bbox_inches='tight')
-plt.show()
