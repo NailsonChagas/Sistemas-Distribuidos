@@ -1,0 +1,195 @@
+RELATÓRIO DE DESEMPENHO - MERGE SORT (C vs JAVA)
+============================================================
+
+1. RESUMO GERAL
+- Tamanhos testados (C): 1000 até 150000
+- Tamanhos testados (Java): 1000 até 150000
+
+2. MÉDIAS DE TEMPO (ms)
+C Sequencial: 5.213
+C Pthread:    2.270
+C OpenMP:     1.536
+Java Sequencial: 6.837
+Java Paralelo:   4.163
+
+3. SPEEDUP MÉDIO
+C Pthread: 2.080
+C OpenMP:  3.220
+Java:      1.641
+
+4. MELHOR IMPLEMENTAÇÃO POR TAMANHO
+Array 1000: Melhor = C Seq (0.052 ms)
+Array 2000: Melhor = C Seq (0.087 ms)
+Array 3000: Melhor = C Seq (0.141 ms)
+Array 4000: Melhor = C Seq (0.196 ms)
+Array 5000: Melhor = C Seq (0.255 ms)
+Array 6000: Melhor = C Seq (0.307 ms)
+Array 7000: Melhor = C Seq (0.377 ms)
+Array 8000: Melhor = C Seq (0.423 ms)
+Array 9000: Melhor = C OpenMP (0.415 ms)
+Array 10000: Melhor = C Seq (0.559 ms)
+Array 11000: Melhor = C Seq (0.651 ms)
+Array 12000: Melhor = C OpenMP (0.599 ms)
+Array 13000: Melhor = C OpenMP (0.573 ms)
+Array 14000: Melhor = C OpenMP (0.566 ms)
+Array 15000: Melhor = C OpenMP (0.588 ms)
+Array 16000: Melhor = C OpenMP (0.493 ms)
+Array 17000: Melhor = C OpenMP (0.435 ms)
+Array 18000: Melhor = C OpenMP (0.546 ms)
+Array 19000: Melhor = C OpenMP (0.586 ms)
+Array 20000: Melhor = C OpenMP (0.600 ms)
+Array 21000: Melhor = C OpenMP (0.545 ms)
+Array 22000: Melhor = C OpenMP (0.780 ms)
+Array 23000: Melhor = C OpenMP (0.692 ms)
+Array 24000: Melhor = C OpenMP (0.591 ms)
+Array 25000: Melhor = C OpenMP (0.742 ms)
+Array 26000: Melhor = C OpenMP (0.504 ms)
+Array 27000: Melhor = C OpenMP (0.531 ms)
+Array 28000: Melhor = C OpenMP (0.560 ms)
+Array 29000: Melhor = C OpenMP (0.748 ms)
+Array 30000: Melhor = C OpenMP (0.725 ms)
+Array 31000: Melhor = C OpenMP (0.672 ms)
+Array 32000: Melhor = C OpenMP (1.008 ms)
+Array 33000: Melhor = C OpenMP (0.904 ms)
+Array 34000: Melhor = C OpenMP (0.733 ms)
+Array 35000: Melhor = C OpenMP (0.677 ms)
+Array 36000: Melhor = C OpenMP (0.718 ms)
+Array 37000: Melhor = C OpenMP (0.747 ms)
+Array 38000: Melhor = C OpenMP (0.740 ms)
+Array 39000: Melhor = C OpenMP (0.707 ms)
+Array 40000: Melhor = C OpenMP (0.717 ms)
+Array 41000: Melhor = C OpenMP (0.777 ms)
+Array 42000: Melhor = C OpenMP (0.875 ms)
+Array 43000: Melhor = C OpenMP (0.890 ms)
+Array 44000: Melhor = C OpenMP (0.782 ms)
+Array 45000: Melhor = C OpenMP (0.850 ms)
+Array 46000: Melhor = C OpenMP (0.880 ms)
+Array 47000: Melhor = C OpenMP (1.145 ms)
+Array 48000: Melhor = C OpenMP (1.214 ms)
+Array 49000: Melhor = C OpenMP (1.148 ms)
+Array 50000: Melhor = C OpenMP (1.149 ms)
+Array 51000: Melhor = C OpenMP (0.990 ms)
+Array 52000: Melhor = C OpenMP (0.990 ms)
+Array 53000: Melhor = C OpenMP (1.025 ms)
+Array 54000: Melhor = C OpenMP (1.091 ms)
+Array 55000: Melhor = C OpenMP (0.999 ms)
+Array 56000: Melhor = C OpenMP (1.109 ms)
+Array 57000: Melhor = C OpenMP (1.123 ms)
+Array 58000: Melhor = C OpenMP (1.072 ms)
+Array 59000: Melhor = C OpenMP (1.123 ms)
+Array 60000: Melhor = C OpenMP (1.113 ms)
+Array 61000: Melhor = C OpenMP (1.264 ms)
+Array 62000: Melhor = C OpenMP (1.250 ms)
+Array 63000: Melhor = C OpenMP (1.369 ms)
+Array 64000: Melhor = C OpenMP (1.350 ms)
+Array 65000: Melhor = C OpenMP (1.471 ms)
+Array 66000: Melhor = C OpenMP (1.326 ms)
+Array 67000: Melhor = C OpenMP (1.616 ms)
+Array 68000: Melhor = C OpenMP (1.362 ms)
+Array 69000: Melhor = C OpenMP (1.323 ms)
+Array 70000: Melhor = C OpenMP (1.304 ms)
+Array 71000: Melhor = C OpenMP (1.384 ms)
+Array 72000: Melhor = C OpenMP (1.496 ms)
+Array 73000: Melhor = C OpenMP (1.383 ms)
+Array 74000: Melhor = C OpenMP (1.413 ms)
+Array 75000: Melhor = C OpenMP (2.648 ms)
+Array 76000: Melhor = C OpenMP (1.459 ms)
+Array 77000: Melhor = C OpenMP (1.423 ms)
+Array 78000: Melhor = C OpenMP (1.387 ms)
+Array 79000: Melhor = C OpenMP (1.686 ms)
+Array 80000: Melhor = C OpenMP (1.603 ms)
+Array 81000: Melhor = C OpenMP (1.543 ms)
+Array 82000: Melhor = C OpenMP (1.614 ms)
+Array 83000: Melhor = C OpenMP (1.997 ms)
+Array 84000: Melhor = C OpenMP (1.557 ms)
+Array 85000: Melhor = C OpenMP (1.753 ms)
+Array 86000: Melhor = C OpenMP (2.330 ms)
+Array 87000: Melhor = C OpenMP (1.606 ms)
+Array 88000: Melhor = C OpenMP (1.733 ms)
+Array 89000: Melhor = C OpenMP (2.027 ms)
+Array 90000: Melhor = C OpenMP (1.653 ms)
+Array 91000: Melhor = C OpenMP (1.958 ms)
+Array 92000: Melhor = C OpenMP (1.771 ms)
+Array 93000: Melhor = C OpenMP (1.671 ms)
+Array 94000: Melhor = C OpenMP (2.127 ms)
+Array 95000: Melhor = C OpenMP (1.762 ms)
+Array 96000: Melhor = C OpenMP (1.704 ms)
+Array 97000: Melhor = C OpenMP (2.003 ms)
+Array 98000: Melhor = C OpenMP (1.896 ms)
+Array 99000: Melhor = C OpenMP (1.771 ms)
+Array 100000: Melhor = C OpenMP (1.875 ms)
+Array 101000: Melhor = C OpenMP (1.866 ms)
+Array 102000: Melhor = C OpenMP (2.134 ms)
+Array 103000: Melhor = C OpenMP (2.292 ms)
+Array 104000: Melhor = C OpenMP (3.214 ms)
+Array 105000: Melhor = C OpenMP (2.065 ms)
+Array 106000: Melhor = C OpenMP (2.116 ms)
+Array 107000: Melhor = C OpenMP (2.192 ms)
+Array 108000: Melhor = C OpenMP (2.069 ms)
+Array 109000: Melhor = C OpenMP (1.949 ms)
+Array 110000: Melhor = C OpenMP (1.981 ms)
+Array 111000: Melhor = C OpenMP (2.071 ms)
+Array 112000: Melhor = C OpenMP (2.129 ms)
+Array 113000: Melhor = C OpenMP (2.089 ms)
+Array 114000: Melhor = C OpenMP (2.141 ms)
+Array 115000: Melhor = C OpenMP (2.072 ms)
+Array 116000: Melhor = C OpenMP (2.157 ms)
+Array 117000: Melhor = C OpenMP (2.150 ms)
+Array 118000: Melhor = C OpenMP (2.178 ms)
+Array 119000: Melhor = C OpenMP (2.199 ms)
+Array 120000: Melhor = C OpenMP (2.305 ms)
+Array 121000: Melhor = C OpenMP (2.244 ms)
+Array 122000: Melhor = C OpenMP (2.456 ms)
+Array 123000: Melhor = C OpenMP (2.254 ms)
+Array 124000: Melhor = C OpenMP (2.378 ms)
+Array 125000: Melhor = C OpenMP (2.312 ms)
+Array 126000: Melhor = C OpenMP (2.385 ms)
+Array 127000: Melhor = C OpenMP (2.329 ms)
+Array 128000: Melhor = C OpenMP (2.429 ms)
+Array 129000: Melhor = C OpenMP (2.407 ms)
+Array 130000: Melhor = C OpenMP (2.424 ms)
+Array 131000: Melhor = C OpenMP (2.598 ms)
+Array 132000: Melhor = C OpenMP (2.476 ms)
+Array 133000: Melhor = C OpenMP (2.504 ms)
+Array 134000: Melhor = C OpenMP (2.366 ms)
+Array 135000: Melhor = C OpenMP (2.422 ms)
+Array 136000: Melhor = C OpenMP (2.478 ms)
+Array 137000: Melhor = C OpenMP (2.531 ms)
+Array 138000: Melhor = C OpenMP (2.528 ms)
+Array 139000: Melhor = C OpenMP (2.455 ms)
+Array 140000: Melhor = C OpenMP (2.511 ms)
+Array 141000: Melhor = C OpenMP (2.498 ms)
+Array 142000: Melhor = C OpenMP (2.590 ms)
+Array 143000: Melhor = C OpenMP (2.566 ms)
+Array 144000: Melhor = C OpenMP (2.574 ms)
+Array 145000: Melhor = C OpenMP (2.685 ms)
+Array 146000: Melhor = C OpenMP (2.671 ms)
+Array 147000: Melhor = C OpenMP (2.784 ms)
+Array 148000: Melhor = C OpenMP (3.036 ms)
+Array 149000: Melhor = C OpenMP (2.830 ms)
+Array 150000: Melhor = C OpenMP (2.762 ms)
+
+5. PONTO DE VIRADA DO PARALELISMO
+- OpenMP passa a ser mais rápido que o sequencial a partir de ~9000 elementos.
+
+6. DOMINÂNCIA POR IMPLEMENTAÇÃO
+- C Seq: 10 vitórias
+- C Pthread: 0 vitórias
+- C OpenMP: 140 vitórias
+- Java Seq: 0 vitórias
+- Java Par: 0 vitórias
+
+- Implementação dominante: C OpenMP
+
+7. ANÁLISE AVANÇADA
+- OpenMP apresenta melhor desempenho médio que Pthreads.
+- OpenMP apresenta melhor escalabilidade que o sequencial.
+- C paralelo (OpenMP) supera Java paralelo.
+- Java apresenta ganho real com paralelismo.
+
+8. ANOMALIAS DETECTADAS
+- Possível anomalia em 4000 (salto de desempenho)
+- Possível anomalia em 10000 (salto de desempenho)
+- Possível anomalia em 11000 (salto de desempenho)
+- Possível anomalia em 75000 (salto de desempenho)
+
