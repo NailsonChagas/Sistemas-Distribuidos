@@ -1,45 +1,51 @@
-
 public class MergeSortSequential {
 
-    private int[] array;
+    private static final int INSERTION_SORT_THRESHOLD = 64;
 
-    public MergeSortSequential(int[] array) {
-        this.array = array;
+    public static void sort(int[] arr) {
+        int[] tmp = new int[arr.length];
+        msort(arr, tmp, 0, arr.length - 1);
     }
 
-    public void sort() {
-        merge_sort(0, array.length - 1);
-    }
+    private static void msort(int[] arr, int[] tmp, int l, int r) {
+        int size = r - l + 1;
 
-    private void merge_sort(int start, int end) {
-        if (start >= end) return;
-
-        int mid_index = (start + end) / 2;
-
-        merge_sort(start, mid_index);
-        merge_sort(mid_index + 1, end);
-
-        merge(start, mid_index, end);
-    }
-
-    private void merge(int start, int mid, int end) {
-        int[] temp = new int[end - start + 1];
-
-        int i = start;
-        int j = mid + 1;
-        int k = 0;
-
-        while (i <= mid && j <= end) {
-            if (array[i] <= array[j]) {
-                temp[k++] = array[i++];
-            } else {
-                temp[k++] = array[j++];
-            }
+        if (size <= INSERTION_SORT_THRESHOLD) {
+            insertionSort(arr, l, r);
+            return;
         }
 
-        while (i <= mid) temp[k++] = array[i++];
-        while (j <= end) temp[k++] = array[j++];
+        int m = (l + r) / 2;
 
-        System.arraycopy(temp, 0, array, start, temp.length);
+        msort(arr, tmp, l, m);
+        msort(arr, tmp, m + 1, r);
+
+        merge(arr, tmp, l, m, r);
+    }
+
+    private static void insertionSort(int[] arr, int l, int r) {
+        for (int i = l + 1; i <= r; i++) {
+            int key = arr[i];
+            int j = i - 1;
+
+            while (j >= l && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j + 1] = key;
+        }
+    }
+
+    private static void merge(int[] arr, int[] tmp, int l, int m, int r) {
+        int i = l, j = m + 1, k = l;
+
+        while (i <= m && j <= r) {
+            tmp[k++] = (arr[i] <= arr[j]) ? arr[i++] : arr[j++];
+        }
+
+        while (i <= m) tmp[k++] = arr[i++];
+        while (j <= r) tmp[k++] = arr[j++];
+
+        System.arraycopy(tmp, l, arr, l, r - l + 1);
     }
 }

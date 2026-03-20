@@ -2,7 +2,7 @@
 
 # Compilador e flags
 CC = gcc
-CFLAGS = -Wall -Wextra -O3 -pthread -I./inc
+CFLAGS = -Wall -Wextra -O3 -fopenmp -I./inc
 
 # Diretórios
 SRC_DIR = src
@@ -10,7 +10,9 @@ INC_DIR = inc
 OBJ_DIR = build
 
 # Arquivos fonte
-SRCS = $(SRC_DIR)/merge_sort_parallel.c \
+SRCS = $(SRC_DIR)/aux.c \
+       $(SRC_DIR)/merge_sort_parallel_pt.c \
+	   $(SRC_DIR)/merge_sort_parallel_opm.c \
        $(SRC_DIR)/merge_sort_sequential.c \
        main.c
 

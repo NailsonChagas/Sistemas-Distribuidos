@@ -1,9 +1,11 @@
-#include "merge_sort_sequential.h"
+#include <omp.h>
 #include <stdlib.h>
 #include <string.h>
+#include "merge_sort_parallel_opm.h"
 
 #define INSERTION_SORT_THRESHOLD 64
 
+// insertion sort para pequenos blocos (mais que recursão)
 static inline void insertion_sort(int *arr, int l, int r)
 {
     for (int i = l + 1; i <= r; i++)
@@ -19,6 +21,7 @@ static inline void insertion_sort(int *arr, int l, int r)
     }
 }
 
+// merge usando buffer auxiliar (SEM malloc)
 static inline void merge(int *arr, int *tmp, int l, int m, int r)
 {
     int i = l, j = m + 1, k = l;
@@ -36,7 +39,7 @@ static inline void merge(int *arr, int *tmp, int l, int m, int r)
     memcpy(arr + l, tmp + l, (r - l + 1) * sizeof(int));
 }
 
-static void msort_seq(int *arr, int *tmp, int l, int r)
+void msort(int *arr, int *tmp, int l, int r, int depth)
 {
     int size = r - l + 1;
 
@@ -48,19 +51,41 @@ static void msort_seq(int *arr, int *tmp, int l, int r)
 
     int m = (l + r) >> 1;
 
-    msort_seq(arr, tmp, l, m);
-    msort_seq(arr, tmp, m + 1, r);
+    if (depth > 0)
+    {
+#pragma omp task shared(arr, tmp)
+        msort(arr, tmp, l, m, depth - 1);
+
+#pragma omp task shared(arr, tmp)
+        msort(arr, tmp, m + 1, r, depth - 1);
+
+#pragma omp taskwait
+    }
+    else
+    {
+        msort(arr, tmp, l, m, 0);
+        msort(arr, tmp, m + 1, r, 0);
+    }
 
     merge(arr, tmp, l, m, r);
 }
 
-void merge_sort_sequential(int *arr, int n)
+void merge_sort_parallel_opm(int *arr, int n)
 {
     int *tmp = malloc(n * sizeof(int));
-    if (!tmp)
-        return;
 
-    msort_seq(arr, tmp, 0, n - 1);
+    int max_threads = omp_get_max_threads();
+    int max_depth = 0;
+
+    // calcula profundidade ideal (log2 threads)
+    while ((1 << max_depth) < max_threads)
+        max_depth++;
+
+#pragma omp parallel
+    {
+#pragma omp single nowait
+        msort(arr, tmp, 0, n - 1, max_depth);
+    }
 
     free(tmp);
 }
