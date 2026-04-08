@@ -6,5 +6,5 @@
 void generate_random_array(int *array, int size);
 double calculate_mean(double *values, int n);
 double calculate_std(double *values, int n, double mean);
-
+int is_sorted(int *array, int size);
 #endif

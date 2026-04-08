@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdio.h>
 
 #define INSERTION_SORT_THRESHOLD 64
 
@@ -15,7 +16,7 @@ typedef struct
     int depth;
 } thread_args_t;
 
-// insertion sort
+// insertion sort https://www.geeksforgeeks.org/dsa/insertion-sort-algorithm/
 static inline void insertion_sort(int *arr, int l, int r)
 {
     for (int i = l + 1; i <= r; i++)
@@ -105,6 +106,9 @@ void merge_sort_parallel_pt(int *arr, int n)
     int max_depth = 0;
     while ((1 << max_depth) < num_cores)
         max_depth++;
+
+    // printf("Numero de cores: %d\n", num_cores);
+    // printf("Profundidade maxima (depth): %d\n", max_depth);
 
     msort_pt(arr, tmp, 0, n - 1, max_depth);
 

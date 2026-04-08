@@ -26,6 +26,11 @@ double test_sequential(int *base_array, int size)
     merge_sort_sequential(cloned_array, size);
     double end = omp_get_wtime(); // Fim do tempo real
 
+    if (!is_sorted(cloned_array, size))
+    {
+        printf("Erro test_sequential: o array nao esta ordenado!\n");
+    }
+
     free(cloned_array);
     return (end - start) * 1000.0;
 }
@@ -45,6 +50,11 @@ double test_parallel_pthread(int *base_array, int size)
     merge_sort_parallel_pt(cloned_array, size);
     double end = omp_get_wtime(); // Fim do tempo real
 
+    if (!is_sorted(cloned_array, size))
+    {
+        printf("Erro test_parallel_pthread: o array nao esta ordenado!\n");
+    }
+
     free(cloned_array);
     return (end - start) * 1000.0;
 }
@@ -63,6 +73,11 @@ double test_parallel_opm(int *base_array, int size)
     double start = omp_get_wtime(); // Início do tempo real
     merge_sort_parallel_opm(cloned_array, size);
     double end = omp_get_wtime(); // Fim do tempo real
+
+    if (!is_sorted(cloned_array, size))
+    {
+        printf("Erro test_parallel_opm: o array nao esta ordenado!\n");
+    }
 
     free(cloned_array);
     return (end - start) * 1000.0;
