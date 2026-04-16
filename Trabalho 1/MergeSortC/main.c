@@ -8,7 +8,7 @@
 #include "inc/merge_sort_parallel_pt.h"
 #include "inc/merge_sort_parallel_opm.h"
 
-#define MAX_SIZE_MULTIPLIER 150
+#define MAX_SIZE_MULTIPLIER 300
 #define NUM_OF_RUNS 10
 
 double test_sequential(int *base_array, int size)
