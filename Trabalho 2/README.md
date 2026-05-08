@@ -1,18 +1,5 @@
 # TCP Chat System (Java)
 
-## Índice
-
-1. [**O que é o projeto**](#o-que-e-o-projeto)
-2. [**Estrutura do repositório**](#estrutura-do-repositorio)
-3. [**Arquitetura geral do sistema**](#arquitetura-geral-do-sistema)
-4. [**Módulo do Servidor (TCPChatServer)**](#modulo-do-servidor-tcpchatserver)
-5. [**Módulo do Cliente (TCPChatClient)**](#modulo-do-cliente-tcpchatclient)
-6. [**Fluxo de comunicação completo**](#fluxo-de-comunicacao-completo)
-7. [**Tipos de mensagens suportadas**](#tipos-de-mensagens-suportadas)
-8. [**Sistema de comandos**](#sistema-de-comandos)
-9. [**Como executar o projeto**](#como-executar-o-projeto)
-10. [**Resumo final**](#resumo-final)
-
 ## O que é o projeto
 
 Este é um sistema de chat distribuído desenvolvido em Java utilizando TCP. Ele permite comunicação em tempo real entre múltiplos clientes conectados a um servidor central, com suporte a mensagens privadas, mensagens em grupo, broadcast e comandos.

@@ -1,27 +1,4 @@
-# TCP Chat Client (Java)
-
-## Índice
-
-1. [**O que é o projeto**](#o-que-e-o-projeto)
-2. [**Arquitetura do cliente**](#arquitetura-do-cliente)
-   1. [**TCPChatClient**](#tcpchatclient)
-   2. [**Thread de recepção**](#thread-de-recepcao)
-   3. [**Histórico local**](#historico-local)
-3. [**Fluxo de comunicação**](#fluxo-de-comunicacao)
-   1. [**Envio de mensagens**](#1-envio-de-mensagens)
-   2. [**Recebimento de mensagens**](#2-recebimento-de-mensagens)
-   3. [**Exibição no terminal**](#3-exibicao-no-terminal)
-4. [**Sistema de comandos locais**](#sistema-de-comandos-locais)
-   1. [**Funcionamento geral**](#funcionamento-geral)
-   2. [**Estrutura de comandos**](#estrutura-de-comandos)
-5. [**Comandos disponíveis**](#comandos-disponiveis)
-   1. [**Locais (/local)**](#locais-local)
-   2. [**Servidor (/)**](#servidor)
-6. [**Sistema de histórico**](#sistema-de-historico)
-7. [**Sistema de exibição (UI CLI)**](#sistema-de-exibicao-ui-cli)
-8. [**Tipos de mensagens suportadas**](#tipos-de-mensagens-suportadas)
-9. [**Resumo do funcionamento**](#resumo-do-funcionamento)
-
+# TCPChatClient (Java)
 
 ## O que é o projeto
 
