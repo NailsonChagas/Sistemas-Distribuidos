@@ -1,4 +1,3 @@
-
 # TCP Chat Server (Java)
 
 ## Índice

@@ -12,6 +12,7 @@ public class ClientHandler implements Runnable {
     private ObjectInputStream in_stream;
     private ObjectOutputStream out_stream;
     private String username;
+    
     public ClientHandler(Socket client_socket, TCPChatServer server_ref) {
         this.client_socket = client_socket;
         this.server_ref = server_ref;
