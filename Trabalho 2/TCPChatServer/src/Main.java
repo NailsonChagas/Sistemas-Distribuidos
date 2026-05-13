@@ -6,10 +6,10 @@ void main() {
         boolean debug = true;
 
         TCPChatServer server = new TCPChatServer(
-                port,
-                backlog,
-                empty_timeout_ms,
-                debug
+            port,
+            backlog,
+            empty_timeout_ms,
+            debug
         );
 
         Thread server_thread = new Thread(server);

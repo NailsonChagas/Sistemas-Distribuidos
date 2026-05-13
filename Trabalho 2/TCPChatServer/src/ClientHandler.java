@@ -172,10 +172,11 @@ public class ClientHandler implements Runnable {
 
                 if (content.startsWith("/")) {
                     running = handleCommand(content);
-                    continue;
                 }
-
-                server_ref.processMessage(msg);
+                else
+                {
+                    server_ref.processMessage(msg);
+                }
             }
 
         } catch (IOException | ClassNotFoundException e) {
@@ -210,7 +211,7 @@ public class ClientHandler implements Runnable {
     }
 
     private void sendSystem(String text) {
-        Mensagem sys = new Mensagem("SERVER", username, "[SERVER] " + text);
+        Mensagem sys = new Mensagem("SERVER", username, text);
         sendMessage(sys);
     }
 

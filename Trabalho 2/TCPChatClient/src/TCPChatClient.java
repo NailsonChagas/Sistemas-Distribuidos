@@ -52,24 +52,20 @@ public class TCPChatClient implements Runnable {
 
                 if (input.startsWith("/local ")) {
                     handleLocalCommand(input.substring(7));
-                    continue;
                 }
-
-                if (input.startsWith("/")) {
+                else if (input.startsWith("/")) {
                     sendSystemCommand(input);
-                    continue;
                 }
-
-                if (current_target == null) {
+                else if (current_target == null) {
                     System.out.println("Selecione um destino com /local use usuario ou @grupo");
-                    continue;
                 }
+                else {
+                    Mensagem msg = new Mensagem(username, current_target, input);
+                    out_stream.writeObject(msg);
+                    out_stream.flush();
 
-                Mensagem msg = new Mensagem(username, current_target, input);
-                out_stream.writeObject(msg);
-                out_stream.flush();
-
-                addToHistory(current_target, msg);
+                    addToHistory(current_target, msg);
+                }
             }
 
         } catch (Exception e) {
@@ -83,15 +79,15 @@ public class TCPChatClient implements Runnable {
         try {
             while (running) {
                 Mensagem msg = (Mensagem) in_stream.readObject();
-                if (msg == null) continue;
+                if (msg != null){
+                    // CORREÇÃO: Adiciona ao histórico usando a chave correta
+                    String historyKey = getString(msg);
 
-                // CORREÇÃO: Adiciona ao histórico usando a chave correta
-                String historyKey = getString(msg);
+                    addToHistory(historyKey, msg);
 
-                addToHistory(historyKey, msg);
-
-                if (shouldDisplay(msg)) {
-                    printMessage(msg);
+                    if (shouldDisplay(msg)) {
+                        printMessage(msg);
+                    }
                 }
             }
         } catch (Exception e) {
