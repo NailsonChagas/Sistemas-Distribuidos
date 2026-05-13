@@ -164,8 +164,9 @@ public class ClientHandler implements Runnable {
 
             username = in_stream.readUTF();
             server_ref.addUser(username, this);
+            boolean running = true;
 
-            while (true) {
+            while (running) {
                 Mensagem msg = (Mensagem) in_stream.readObject();
 
                 String content = msg.getConteudo();
