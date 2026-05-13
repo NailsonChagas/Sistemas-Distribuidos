@@ -2,7 +2,7 @@ void main() {
     try {
         int port = 1234;
         int backlog = 50;
-        int empty_timeout_ms = 30000; // 30 segundos
+        int empty_timeout_ms = 120000; // 2 minutos
         boolean debug = true;
 
         TCPChatServer server = new TCPChatServer(

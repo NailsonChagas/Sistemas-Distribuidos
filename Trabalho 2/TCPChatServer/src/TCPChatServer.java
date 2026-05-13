@@ -199,7 +199,7 @@ public class TCPChatServer implements Runnable {
                     /help                         - Mostra todos os comandos
                     /quit                         - Sai do servidor
                     /online_users                 - Lista usuários conectados
-                    /create_group @g u1 u2 ...    - Cria grupo
+                    /create_group @g u1 u2 u3 ... - Cria grupo
                     /groups                       - Lista grupos existentes
                     /join_group @g                - Entrar em grupo
                     /leave_group @g               - Sair de grupo
