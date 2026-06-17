@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class BackjackServerLogic extends UnicastRemoteObject implements BlackjackRemoteInterface {
-
     private final Map<String, GameState> players = new ConcurrentHashMap<>();
 
     public BackjackServerLogic() throws RemoteException {
@@ -47,7 +46,6 @@ public class BackjackServerLogic extends UnicastRemoteObject implements Blackjac
 
     @Override
     public String stand(String name) throws RemoteException {
-
         GameState game = players.get(name);
 
         Hand dealerHand = game.getDealerHand();
