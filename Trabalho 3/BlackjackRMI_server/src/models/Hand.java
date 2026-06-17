@@ -21,6 +21,12 @@ public class Hand {
                 aces++;
         }
 
+        /*
+        * Inicialmente, todos os ases são considerados como valendo 11 pontos.
+        * Caso a soma ultrapasse 21, cada iteração do laço reduz o valor de um
+        * Ás de 11 para 1 (subtraindo 10 da pontuação total), repetindo o processo
+        * até que a mão não esteja mais estourada ou não existam mais ases para ajustar.
+        */
         while (total > 21 && aces > 0) {
             total -= 10;
             aces--;
