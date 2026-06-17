@@ -4,6 +4,7 @@ import interfaces.BlackjackRemoteInterface;
 import models.DeckCards;
 import models.GameState;
 import models.Hand;
+import models.Card;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -30,18 +31,18 @@ public class BackjackServerLogic extends UnicastRemoteObject implements Blackjac
 
         if (game.isFinished()) return ""; // ver o que fazer nesse caso
 
-        game.getPlayerHand().addCard(
-                game.getDeck().buyCard()
-        );
+        Card aux = game.getDeck().buyCard();
+
+        game.getPlayerHand().addCard(aux);
 
         int points = game.getPlayerHand().calculateScore();
 
         if (points > 21) {
             game.setFinished(true);
-            return "Você estourou!";
+            return aux.toString() + ": Você estourou!";
         }
 
-        return "Pontuação = " + points;
+        return aux.toString() + ": Pontuação = " + points;
     }
 
     @Override
