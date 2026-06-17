@@ -406,39 +406,47 @@ RemoteException
 em todos os métodos remotos.
 
 ## Compilação e Execução
+O projeto contém um script `build.sh` responsável por compilar o servidor e o cliente e gerar os arquivos `.jar`.
 
-### 1. Executar o servidor
+### 1. Compilar o projeto
 
-Classe:
+No diretório raiz do projeto, execute:
 
-```java
-BlackjackRMI_server/src/Main.java
+```bash
+chmod +x build.sh
+./build.sh
 ```
 
-Saída esperada:
+O script irá:
 
-```text
-Servidor iniciado!
+* Remover arquivos de compilação antigos;
+* Compilar o servidor;
+* Compilar o cliente;
+* Gerar os arquivos:
+
+```
+BlackjackRMI_server/server.jar
+BlackjackRMI_client/client.jar
 ```
 
-### 2. Executar o cliente
+### 2. Executar o servidor
 
-Classe:
+Em um terminal, execute:
 
-```java
-BlackjackRMI_client/src/Main.java
+```bash
+java -jar BlackjackRMI_server/server.jar
 ```
 
-O programa solicitará:
+O servidor iniciará e registrará o serviço RMI `Blackjack`.
 
-```text
-Digite seu nome:
+### 3. Executar o cliente
+
+Em outro terminal, execute:
+
+```bash
+java --enable-preview -jar BlackjackRMI_client/client.jar
 ```
 
-e permitirá as opções:
+O cliente se conectará ao servidor RMI em `localhost` e permitirá jogar Blackjack pelo terminal.
 
-```text
-1 - Pedir carta
-2 - Parar
-3 - Sair
-```
+> **Observação:** é necessário utilizar o Java 21 ou superior, pois o cliente faz uso de funcionalidades em modo preview.
