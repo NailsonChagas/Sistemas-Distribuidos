@@ -61,11 +61,11 @@ Esses métodos correspondem às ações permitidas ao jogador durante uma partid
 
 Responsável por:
 
-* Gerenciar os jogadores conectados;
-* Criar partidas individuais;
-* Manter os baralhos;
-* Executar a lógica do dealer;
-* Determinar o vencedor da rodada.
+- Gerenciar os jogadores conectados;
+- Criar partidas individuais;
+- Manter os baralhos;
+- Executar a lógica do dealer;
+- Determinar o vencedor da rodada.
 
 Classe principal:
 
@@ -96,9 +96,9 @@ O cliente:
 3. Inicia uma rodada;
 4. Permite escolher entre:
 
-* Pedir carta (Hit);
-* Parar (Stand);
-* Sair.
+- Pedir carta (Hit);
+- Parar (Stand);
+- Sair.
 
 Toda a lógica do jogo é executada no servidor.
 
@@ -111,8 +111,8 @@ Representa uma carta do baralho.
 
 A classe armazena:
 
-* Valor da carta;
-* Naipe.
+- Valor da carta;
+- Naipe.
 
 Também fornece:
 
@@ -122,9 +122,9 @@ getNumericValue()
 
 que converte:
 
-* A → 11;
-* J, Q e K → 10;
-* 2 a 10 → valor numérico correspondente.
+- A → 11;
+- J, Q e K → 10;
+- 2 a 10 → valor numérico correspondente.
 
 ### DeckCards
 
@@ -132,14 +132,14 @@ Representa um baralho de 52 cartas.
 
 Funções:
 
-* Criar todas as combinações de valores e naipes;
-* Embaralhar as cartas usando:
+- Criar todas as combinações de valores e naipes;
+- Embaralhar as cartas usando:
 
 ```java
 Collections.shuffle()
 ```
 
-* Fornecer cartas através do método:
+- Fornecer cartas através do método:
 
 ```java
 buyCard()
@@ -151,8 +151,8 @@ Representa a mão de um jogador.
 
 Responsável por:
 
-* Armazenar as cartas;
-* Calcular a pontuação.
+- Armazenar as cartas;
+- Calcular a pontuação.
 
 A implementação trata corretamente os ases, reduzindo seu valor de 11 para 1 quando necessário para evitar ultrapassar 21.
 
@@ -160,10 +160,10 @@ A implementação trata corretamente os ases, reduzindo seu valor de 11 para 1 q
 
 Armazena o estado completo de uma partida:
 
-* Baralho;
-* Mão do jogador;
-* Mão do dealer;
-* Situação de término da partida.
+- Baralho;
+- Mão do jogador;
+- Mão do dealer;
+- Situação de término da partida.
 
 Cada jogador conectado possui uma instância própria dessa classe.
 
@@ -179,16 +179,16 @@ e fornece os métodos:
 
 #### startRound()
 
-* Cria uma nova partida;
-* Distribui duas cartas para o jogador;
-* Distribui duas cartas para o dealer;
-* Armazena a partida no mapa de jogadores.
+- Cria uma nova partida;
+- Distribui duas cartas para o jogador;
+- Distribui duas cartas para o dealer;
+- Armazena a partida no mapa de jogadores.
 
 #### hit()
 
-* Compra uma nova carta;
-* Recalcula a pontuação;
-* Verifica se o jogador ultrapassou 21.
+- Compra uma nova carta;
+- Recalcula a pontuação;
+- Verifica se o jogador ultrapassou 21.
 
 Caso isso ocorra:
 
@@ -419,10 +419,10 @@ chmod +x build.sh
 
 O script irá:
 
-* Remover arquivos de compilação antigos;
-* Compilar o servidor;
-* Compilar o cliente;
-* Gerar os arquivos:
+- Remover arquivos de compilação antigos;
+- Compilar o servidor;
+- Compilar o cliente;
+- Gerar os arquivos:
 
 ```
 BlackjackRMI_server/server.jar
