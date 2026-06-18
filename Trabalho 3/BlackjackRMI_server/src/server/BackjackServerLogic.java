@@ -53,7 +53,6 @@ public class BackjackServerLogic extends UnicastRemoteObject implements Blackjac
                 }
 
                 try {
-                    System.out.println("Teste");
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
@@ -131,5 +130,23 @@ public class BackjackServerLogic extends UnicastRemoteObject implements Blackjac
     @Override
     public void heartbeat(String name) throws RemoteException {
         lastSeen.put(name, System.currentTimeMillis());
+    }
+
+    @Override
+    public String players() throws RemoteException {
+        StringBuilder sb = new StringBuilder();
+
+        for (String name : players.keySet()) {
+            Score score = scores.get(name);
+
+            if (score != null) {
+                sb.append(name)
+                .append(" - ")
+                .append(score)
+                .append("\n");
+            }
+        }
+
+        return sb.toString();
     }
 }

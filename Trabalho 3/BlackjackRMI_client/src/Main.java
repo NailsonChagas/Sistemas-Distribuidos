@@ -43,7 +43,8 @@ void main() {
 
                 System.out.println("\n1 - Pedir carta");
                 System.out.println("2 - Parar");
-                System.out.println("3 - Sair");
+                System.out.println("3 - Players");
+                System.out.println("4 - Sair");
 
                 int option = scanner.nextInt();
 
@@ -64,6 +65,10 @@ void main() {
                         break;
 
                     case 3:
+                        System.out.println(game.players());
+                        break;
+
+                    case 4:
                         playing = false;
                         continueGame = false;
                         break;

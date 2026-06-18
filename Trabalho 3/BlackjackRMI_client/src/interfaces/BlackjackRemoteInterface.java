@@ -18,4 +18,7 @@ public interface BlackjackRemoteInterface extends Remote {
 
     // Heartbeat
     void heartbeat(String name) throws RemoteException;
+
+    // Jogadores conectados
+    String players() throws RemoteException;
 }
