@@ -21,4 +21,7 @@ public interface BlackjackRemoteInterface extends Remote {
 
     // Jogadores conectados
     String players() throws RemoteException;
+
+    // Sair
+    void quit(String name) throws RemoteException;
 }

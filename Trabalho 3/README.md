@@ -16,6 +16,7 @@ As principais operações disponibilizadas são:
 - `score()` – consulta a pontuação acumulada;
 - `heartbeat()` – informa ao servidor que o cliente continua ativo.
 - `players()` – exibe os jogadores conectados e suas respectivas pontuações;
+- `quit()` – sair do jogo;
 
 Toda a lógica do jogo é executada no servidor.
 

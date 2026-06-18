@@ -95,6 +95,7 @@ private static boolean playRound(
 
         showMenu();
 
+        System.out.print("Selecionado: ");
         int option = scanner.nextInt();
 
         switch (option) {
@@ -119,6 +120,7 @@ private static boolean playRound(
                 break;
 
             case 4:
+                game.quit(name);
                 return false;
 
             default:

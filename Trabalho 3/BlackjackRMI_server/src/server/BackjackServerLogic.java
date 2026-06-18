@@ -149,4 +149,12 @@ public class BackjackServerLogic extends UnicastRemoteObject implements Blackjac
 
         return sb.toString();
     }
+
+    @Override
+    public void quit(String name) throws RemoteException {
+        players.remove(name);
+        scores.remove(name);
+        lastSeen.remove(name);
+        System.out.println("Jogador saiu " + name);
+    }
 }
