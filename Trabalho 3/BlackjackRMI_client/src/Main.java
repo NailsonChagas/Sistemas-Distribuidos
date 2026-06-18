@@ -57,6 +57,7 @@ void main() {
             }
 
             if (continueGame) {
+                System.out.print(game.score(name));
                 System.out.print("\nDeseja jogar novamente? (s/n): ");
                 scanner.nextLine(); // limpa o buffer
                 String answer = scanner.nextLine();

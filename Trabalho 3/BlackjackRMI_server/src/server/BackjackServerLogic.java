@@ -5,6 +5,7 @@ import models.DeckCards;
 import models.GameState;
 import models.Hand;
 import models.Card;
+import models.Score;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -26,6 +27,7 @@ public class BackjackServerLogic extends UnicastRemoteObject implements Blackjac
      * dentro de GameState não precisam
      */
     private final Map<String, GameState> players = new ConcurrentHashMap<>();
+    private final Map<String, Score> scores = new ConcurrentHashMap<>();
 
     public BackjackServerLogic() throws RemoteException {
         super();
@@ -34,13 +36,17 @@ public class BackjackServerLogic extends UnicastRemoteObject implements Blackjac
     @Override
     public String startRound(String name) throws RemoteException {
         GameState game = new GameState();
+        
         players.put(name, game);
+        scores.putIfAbsent(name, new Score()); // Apenas criar novo score se o nome não existir
+
         return game.getPlayerHand().getCards().toString();
     }
 
     @Override
     public String hit(String name) throws RemoteException {
         GameState game = players.get(name);
+        Score score = scores.get(name);
 
         if (game.isFinished()) return ""; // ver o que fazer nesse caso
 
@@ -51,6 +57,7 @@ public class BackjackServerLogic extends UnicastRemoteObject implements Blackjac
         int points = game.getPlayerHand().calculateScore();
 
         if (points > 21) {
+            score.addLoss();
             game.setFinished(true);
             return aux.toString() + ": Você estourou!";
         }
@@ -61,6 +68,7 @@ public class BackjackServerLogic extends UnicastRemoteObject implements Blackjac
     @Override
     public String stand(String name) throws RemoteException {
         GameState game = players.get(name);
+        Score score = scores.get(name);
 
         Hand dealerHand = game.getDealerHand();
         Hand playerHand = game.getPlayerHand();
@@ -75,12 +83,17 @@ public class BackjackServerLogic extends UnicastRemoteObject implements Blackjac
         int dealerScore = dealerHand.calculateScore();
         int playerScore = playerHand.calculateScore();
 
-        if (dealerScore > 21)
+        if (dealerScore > 21 || playerScore > dealerScore) {
+            score.addWin();
             return "Jogador venceu";
+        }
 
-        if (playerScore > dealerScore)
-            return "Jogador venceu";
-
+        score.addLoss();
         return "Dealer venceu";
+    }
+
+    @Override
+    public String score(String name) throws RemoteException {
+        return scores.get(name).toString();
     }
 }

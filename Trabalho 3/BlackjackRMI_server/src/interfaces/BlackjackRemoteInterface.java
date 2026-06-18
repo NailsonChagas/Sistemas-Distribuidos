@@ -12,4 +12,7 @@ public interface BlackjackRemoteInterface extends Remote {
 
     // Encerra o turno do jogador e passa para o dealer
     String stand(String name) throws RemoteException;
+
+    // Pega o placar
+    String score(String name) throws RemoteException;
 }
