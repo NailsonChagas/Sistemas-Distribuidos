@@ -13,6 +13,23 @@ void main() {
         System.out.print("Digite seu nome: ");
         String name = scanner.nextLine();
 
+        Thread heartbeatThread = new Thread(() -> {
+            while (!Thread.currentThread().isInterrupted()) {
+
+                try {
+                    game.heartbeat(name);
+
+                    // envia heartbeat a cada 2 s
+                    Thread.sleep(2000);
+
+                } catch (Exception e) {
+                    break;
+                }
+            }
+        });
+        heartbeatThread.setDaemon(true);
+        heartbeatThread.start();
+
         boolean continueGame = true;
 
         while (continueGame) {
@@ -68,6 +85,7 @@ void main() {
             }
         }
 
+        heartbeatThread.interrupt();
         System.out.println("Até a próxima!");
 
     } catch (Exception e) {

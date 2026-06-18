@@ -15,4 +15,7 @@ public interface BlackjackRemoteInterface extends Remote {
 
     // Pega o placar
     String score(String name) throws RemoteException;
+
+    // Heartbeat
+    void heartbeat(String name) throws RemoteException;
 }

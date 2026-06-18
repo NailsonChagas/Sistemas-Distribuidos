@@ -28,9 +28,40 @@ public class BackjackServerLogic extends UnicastRemoteObject implements Blackjac
      */
     private final Map<String, GameState> players = new ConcurrentHashMap<>();
     private final Map<String, Score> scores = new ConcurrentHashMap<>();
+    private final Map<String, Long> lastSeen = new ConcurrentHashMap<>(); // para o heartbeat checando se desconectou
 
     public BackjackServerLogic() throws RemoteException {
         super();
+
+        /**
+         * Checa se o cliente ainda esta conectado
+         * caso n -> remover
+         */
+        Thread cleaner = new Thread(() -> {
+            while (true) {
+                long now = System.currentTimeMillis();
+
+                for (String name : lastSeen.keySet()) {
+
+                    if (now - lastSeen.get(name) > 4000) { // 4 s sem contato
+                        System.out.println("Removendo jogador " + name);
+
+                        players.remove(name);
+                        scores.remove(name);
+                        lastSeen.remove(name);
+                    }
+                }
+
+                try {
+                    System.out.println("Teste");
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        });
+        cleaner.setDaemon(true);
+        cleaner.start();
     }
 
     @Override
@@ -95,5 +126,10 @@ public class BackjackServerLogic extends UnicastRemoteObject implements Blackjac
     @Override
     public String score(String name) throws RemoteException {
         return scores.get(name).toString();
+    }
+
+    @Override
+    public void heartbeat(String name) throws RemoteException {
+        lastSeen.put(name, System.currentTimeMillis());
     }
 }
