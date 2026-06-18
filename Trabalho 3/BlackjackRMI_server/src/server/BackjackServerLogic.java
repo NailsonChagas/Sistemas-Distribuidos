@@ -12,6 +12,19 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class BackjackServerLogic extends UnicastRemoteObject implements BlackjackRemoteInterface {
+    /**
+     * https://docs.oracle.com/en/java/javase/17/docs/specs/rmi/arch.html
+     * A method dispatched by the RMI runtime to a remote object implementation 
+     * may or may not execute in a separate thread. The RMI runtime makes no 
+     * guarantees with respect to mapping remote object invocations to threads. 
+     * Since remote method invocation on the same remote object may execute 
+     * concurrently, a remote object implementation needs to make sure its 
+     * implementation is thread-safe.
+     * 
+     * Como o hashmap abaixo pode ser usado em diferentes threads ao mesmo 
+     * tempo ele precisa ser ConcurrentHashMap, resto dos objetos como estão
+     * dentro de GameState não precisam
+     */
     private final Map<String, GameState> players = new ConcurrentHashMap<>();
 
     public BackjackServerLogic() throws RemoteException {
