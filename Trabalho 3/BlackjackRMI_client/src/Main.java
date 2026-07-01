@@ -132,7 +132,6 @@ private static boolean playRound(
 }
 
 private static void showMenu() {
-
     System.out.println("\n1 - Pedir carta");
     System.out.println("2 - Parar");
     System.out.println("3 - Players");

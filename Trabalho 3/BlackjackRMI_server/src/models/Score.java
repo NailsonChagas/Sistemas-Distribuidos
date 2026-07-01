@@ -17,6 +17,14 @@ public class Score {
         losses++;
     }
 
+    public int getWins() {
+        return wins;
+    }
+
+    public int getLosses() {
+        return losses;
+    }
+
     @Override
     public String toString() {
         return "Vitórias: " + wins + " | Derrotas: " + losses;

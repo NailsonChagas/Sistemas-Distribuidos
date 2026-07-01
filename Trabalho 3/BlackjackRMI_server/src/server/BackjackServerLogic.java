@@ -10,6 +10,7 @@ import models.Score;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Map;
+import java.util.Comparator;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class BackjackServerLogic extends UnicastRemoteObject implements BlackjackRemoteInterface {
@@ -70,7 +71,12 @@ public class BackjackServerLogic extends UnicastRemoteObject implements Blackjac
         players.put(name, game);
         scores.putIfAbsent(name, new Score()); // Apenas criar novo score se o nome não existir
 
-        return game.getPlayerHand().getCards().toString();
+        // Regra do enunciado: apenas a primeira carta do dealer fica visível
+        // ao jogador no início da rodada (a segunda permanece oculta).
+        Card dealerUpCard = game.getDealerHand().getCards().get(0);
+
+        return "Suas cartas: " + game.getPlayerHand().getCards()
+                + "\nCarta visível do dealer: " + dealerUpCard;
     }
 
     @Override
@@ -113,13 +119,18 @@ public class BackjackServerLogic extends UnicastRemoteObject implements Blackjac
         int dealerScore = dealerHand.calculateScore();
         int playerScore = playerHand.calculateScore();
 
+        // A mão completa do dealer (antes oculta) é revelada ao jogador
+        // somente agora, depois que ele decide parar.
+        String dealerInfo = "Mão do dealer: " + dealerHand.getCards()
+                + " (Pontuação: " + dealerScore + ")\n";
+
         if (dealerScore > 21 || playerScore > dealerScore) {
             score.addWin();
-            return "Jogador venceu";
+            return dealerInfo + "Jogador venceu";
         }
 
         score.addLoss();
-        return "Dealer venceu";
+        return dealerInfo + "Dealer venceu";
     }
 
     @Override
@@ -132,20 +143,53 @@ public class BackjackServerLogic extends UnicastRemoteObject implements Blackjac
         lastSeen.put(name, System.currentTimeMillis());
     }
 
+    // @Override
+    // public String players() throws RemoteException { // essa n ordena pelo num de wins
+    //     StringBuilder sb = new StringBuilder();
+
+    //     for (String name : players.keySet()) {
+    //         Score score = scores.get(name);
+
+    //         if (score != null) {
+    //             sb.append(name)
+    //             .append(" - ")
+    //             .append(score)
+    //             .append("\n");
+    //         }
+    //     }
+
+    //     return sb.toString();
+    // }
+
     @Override
     public String players() throws RemoteException {
         StringBuilder sb = new StringBuilder();
 
-        for (String name : players.keySet()) {
-            Score score = scores.get(name);
+        /*
+        * players.keySet().stream() -> cria um Stream contendo os nomes de todos os jogadores.
+        *
+        * filter(scores::containsKey) -> mantém apenas os jogadores que possuem uma
+        * entrada no mapa de pontuações.
+        *
+        * sorted(...) -> ordena os jogadores utilizando um Comparator.
+        *      Comparator.comparingInt(...) compara os jogadores pelo número de vitórias
+        *      retornado por scores.get(name).getWins().
+        *      reversed() inverte a ordem da comparação, fazendo com que quem possui
+        *      mais vitórias apareça primeiro (ordem decrescente).
+        *
+        * forEach(...) -> percorre os jogadores já ordenados e adiciona cada um
+        * à StringBuilder no formato:
+        *      Nome - Vitórias: X | Derrotas: Y
+        */
 
-            if (score != null) {
-                sb.append(name)
-                .append(" - ")
-                .append(score)
-                .append("\n");
-            }
-        }
+        players.keySet().stream()
+                .filter(scores::containsKey)
+                .sorted(Comparator.comparingInt((String name) -> scores.get(name).getWins())
+                                .reversed())
+                .forEach(name -> sb.append(name)
+                                .append(" - ")
+                                .append(scores.get(name))
+                                .append("\n"));
 
         return sb.toString();
     }
