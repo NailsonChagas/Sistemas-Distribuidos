@@ -120,6 +120,7 @@ private static boolean playRound(
                 break;
 
             case 4:
+                System.out.println(game.players());
                 game.quit(name);
                 return false;
 
